@@ -9,6 +9,6 @@ urlpatterns = patterns('',
                            TemplateView.as_view(template_name='home.html'),
                            name='home'),
                        url(r'', include('pep8runs.urls')),
-                       #url(r'', include('projects.urls')),
+                       url(r'', include('projects.urls')),
                        #url(r'^admin/', include(admin.site.urls)),
                        )

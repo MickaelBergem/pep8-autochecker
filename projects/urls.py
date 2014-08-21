@@ -3,9 +3,9 @@ from django.views.generic.base import TemplateView
 
 from bsct.urls import URLGenerator
 
-from models import Run
-bsct_patterns_run = URLGenerator(Run).get_urlpatterns(paginate_by=10)
+from models import Project
+bsct_patterns_project = URLGenerator(Project).get_urlpatterns(paginate_by=10)
 
 urlpatterns = patterns('',
-                       url('', include(bsct_patterns_run)),
+                       url('', include(bsct_patterns_project)),
                        )

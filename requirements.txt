@@ -3,3 +3,4 @@ pillow
 python-dateutil
 django-debug-toolbar
 django-bootstrap-form
+pep8
