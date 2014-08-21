@@ -23,6 +23,12 @@ body {
     margin-bottom: 0;
     line-height: 40px;
 }
+.header h3 a{
+    color: inherit;
+}
+.header h3 a:hover{
+    text-decoration: none;
+}
 
 /* Custom page footer */
 .footer {
