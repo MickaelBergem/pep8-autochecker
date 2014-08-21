@@ -1,0 +1,37 @@
+{% extends 'bsct/base.html' %}
+{% load i18n %}
+ 
+{% block BSCT_CONTENT %}
+<form
+    action = ""
+    method = "post"
+>
+    {% csrf_token %}
+
+    {% block BSCT_WARNING %}
+
+        {% block BSCT_WARNING_ALERT %}
+        <h3 class = ''>
+            {% trans "Are you sure you want to delete " %} "{{object}}" ? 
+        </h3>
+        {% endblock %}
+
+        {% block BSCT_WARNING_OPTS %}
+        <input 
+            class = 'btn btn-danger'
+            type  = 'submit' 
+            value = '{%trans "Yes" %}' 
+        />
+
+        <a
+            class = 'btn btn-default'
+            href  = '{{object.get_absolute_url}}'
+        >
+            {%trans "No" %}
+        </a>
+        {% endblock %}
+
+    {% endblock %}
+
+</form>
+{% endblock %}

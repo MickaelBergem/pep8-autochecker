@@ -1,0 +1,116 @@
+{% extends 'bsct/base.html' %}
+
+{% load bscttags %}
+
+{% block BSCT_CONTENT %}
+
+{% block BSCT_LIST_HEAD_INFO %}
+{% endblock %}
+
+{% block BSCT_LIST_CREATE_LINK %}
+{% if object_list.model.get_create_url %}
+<div class="btn-group pull-right">
+    <a
+        class = 'btn btn-primary'
+        href  = '{{object_list.model.get_create_url }}'
+    >
+        <span class="glyphicon glyphicon-plus"></span>
+        Create : {% get_verbose_name object_list.model %}
+    </a>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block BSCT_TITLE %}
+<h2>{% get_verbose_name_plural object_list.model %}</h2>
+{% endblock %}
+
+{% block BSCT_LIST_ITEMS %}
+
+{% with object_list|get_list_fields as field_list %}
+
+<table class = '{% block BSCT_LIST_ITEMS_CLASS %}table table-striped{% endblock %}'>
+
+        <thead>
+            {% block BSCT_LIST_ITEMS_HEADER %}
+            {% if field_list %}
+            {% for field in field_list %}
+            <th>{% get_verbose_field_name field %}</th>
+            {% endfor %}
+            {% else %}
+            <th>{% get_verbose_name_plural object_list.model %}</th>
+            {% endif %}
+
+                <th> Action </th>
+
+            {% endblock %}
+        </thead>
+        {% block BSCT_LIST_ITEMS_ROWS %}
+        {% for object in object_list %}
+        <tr>
+            {% if field_list %}
+            {% for field in field_list %}
+            <td>
+                {% block BSCT_LIST_ITEMS_ITEM %}
+                    {% get_value_field object field %}
+                {% endblock %}
+            </td>
+            {% endfor %}
+            {% else %}
+            <td>
+                {% block BSCT_LIST_ITEMS_ITEM_ALONE %}
+                    {{ object }}
+                {% endblock %}
+            </td>
+            {% endif %}
+
+            {% block BSCT_LIST_ITEMS_EXTRA %}
+            {% endblock %}
+
+            <td>
+                {% block BSCT_LIST_ITEMS_ACTIONS %}
+                <div class="btn-group">
+                <a
+                    class = 'btn btn-default btn-sm'
+                    href  = '{{ object.get_absolute_url }}'
+                >
+                    Details
+                </a>
+                <a
+                    class = 'btn btn-default btn-sm'
+                    href  = '{{ object.get_update_url }}'
+                    title = "Update"
+                >
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a
+                    class = 'btn btn-default btn-sm'
+                    href  = '{{ object.get_delete_url }}'
+                    title = "Delete"
+                >
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+                </div>
+                {% endblock %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="{% get_size_plus1_list_field field_list %}" class="warning text-center">No {% get_verbose_name object_list.model %} !</td></tr>
+        {% endfor %}
+        {% endblock %}
+
+        {% block BSCT_LIST_FOOTER %}{% endblock %}
+</table>
+{% endwith %}
+{% endblock %}
+
+{% block BSCT_LIST_EXTRA_INFO %}
+{% endblock %}
+
+{% block BSCT_LIST_PAGINATION %}
+{%if not sort_link_list%}
+{% include 'bsct/plain/paginator.html' %}
+{%endif%}
+{% endblock %}
+
+{% endblock %}

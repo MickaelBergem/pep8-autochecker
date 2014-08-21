@@ -1,0 +1,87 @@
+{% extends 'bsct/base.html' %}
+
+{% load bscttags %}
+
+{% block BSCT_CONTENT %}
+
+{% block BSCT_TITLE %}
+<h2> {{object}} </h2>
+{% endblock %}
+
+{% block BSCT_DETAIL_FIELDS %}
+
+<table class = 'table table-condensed' >
+{% with object|get_detail as d %}
+
+    {% for field in d %}
+    <tr>
+        <th>
+            {% block BSCT_DETAIL_FIELDS_FIELD %}
+            {{ field.label }}
+            {% endblock %}
+        </th>
+
+        <td>
+            {% block BSCT_DETAIL_FIELDS_VALUE %}
+            {{ field.value }}
+            {% endblock %}
+        </td>
+    </tr>
+    {% endfor %}
+    
+    
+{% endwith %}
+</table>
+
+
+{% block BSCT_DETAIL_FIELDS_EXTRA %}
+{% endblock %}
+
+{% endblock %}
+
+
+{% block BSCT_DETAIL_ACTIONS %}
+
+{% block BSCT_DETAIL_ACTIONS_EDIT %}
+{% if object.get_update_url %}
+    <a 
+        class = 'btn btn-info'
+        href  = '{{object.get_update_url}}'
+    >
+        <span class="glyphicon glyphicon-pencil"></span>
+        {% trans "Edit" %}
+    </a>
+{% endif %}
+{% endblock %}
+
+{% block BSCT_DETAIL_ACTIONS_DELETE %}
+{% if object.get_delete_url %}
+    <a 
+        class = 'btn btn-danger'
+        href  = '{{object.get_delete_url}}'
+    >
+        <span class="glyphicon glyphicon-trash"></span>
+        {% trans "Delete" %}
+    </a>
+{% endif %}
+{% endblock %}
+
+{% block BSCT_DETAIL_ACTIONS_LIST %}
+
+{% if object.get_list_url %}
+    <a 
+        class = 'btn btn-default'
+        href  = '{{ object.get_list_url }}'
+    >
+        {% trans "Back to list" %}
+    </a>
+{% endif %}
+
+{% endblock %}
+
+{% block BSCT_DETAIL_ACTIONS_EXTRA %}
+{% endblock %}
+
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'bsct/base.html' %}
+
+{% load bscttags %}
+{% load bootstrap %}
+
+{% block BSCT_CONTENT %}
+
+{% block BSCT_TITLE %}
+<h2> {% if view|isinst:'bsct.views.UpdateView' %} Edit {% else %} New {% endif %} {% get_verbose_name form.instance %} </h2>
+{% endblock %}
+
+<form 
+    action  = ''
+    method  = 'post' 
+    class   = 'form-horizontal' 
+    enctype = 'multipart/form-data' 
+    role    = 'form'
+>
+    {% csrf_token %}
+
+    <div class = 'well' >
+        {% block BSCT_FORM_FIELDS %}
+            {{ form|bootstrap_horizontal }}
+        {% endblock %}
+    </div>
+
+    <div class='actions'>
+        {% block BSCT_FORM_ACTIONS %}
+        <button
+            type  = 'submit' 
+            class = 'btn btn-success' 
+        >
+            <span class="glyphicon glyphicon-ok"></span>
+            Submit
+        </button>
+
+        {% if form.instance.get_list_url %}
+            <a 
+                class = 'btn btn-default'
+                href  = '{{form.instance.get_list_url}}'
+            >
+                Back to list
+            </a>
+        {% endif %}
+        {% endblock %}
+    </div>
+
+</form>
+
+{% endblock %}

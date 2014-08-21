@@ -36,6 +36,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'projects',
+    'pep8runs',
+    'bsct',
+    'bootstrapform',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,6 +104,6 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(
         BASE_DIR,
-        'template',
+        'templates',
     ),
 )
