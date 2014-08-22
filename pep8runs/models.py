@@ -18,11 +18,13 @@ class Run(BSCTModelMixin, models.Model):
     time_start = models.DateTimeField(default=datetime.now(),
                                       verbose_name='Date of run start')
     finished = models.BooleanField(verbose_name='Run finished')
-    duration = models.IntegerField(verbose_name='Run duration')
+    duration = models.IntegerField(default=0,
+                                   verbose_name='Run duration')
     status = models.CharField(verbose_name='Run status',
                               max_length=10,
                               choices=STATUS_CHOICES,
                               default='unknown')
+
     raw_output = models.TextField(verbose_name='Raw output')
 
     bsct_list_fields = [project, time_start, finished, duration]

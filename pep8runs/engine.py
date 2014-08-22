@@ -12,9 +12,20 @@ class PEP8Runner:
         self.pep8style = pep8.StyleGuide(quiet=True)
 
     def run(self, project):
+
+        run = Run(project=project, finished=False)
+
         result = self.pep8style.check_files(['manage.py', 'pep8runs/models.py'])
-        return result
+
+        run.status = 'ok'
+        run.finished = True
+        run.duration = result.elapsed
+        run.raw_output = result.messages
+
+        return run
 
     def run_and_save(self, project):
-        res = self.run(project)
-        # TODO : save...
+        run = self.run(project)
+        run.save()
+
+        return run
