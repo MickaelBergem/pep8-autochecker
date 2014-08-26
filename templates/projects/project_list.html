@@ -1,0 +1,35 @@
+{% extends 'bsct/plain/list.html' %}
+{% load bscttags %}
+
+{% block BSCT_LIST_ITEMS_ACTIONS %}
+<div class="btn-group">
+<a
+    class = 'btn btn-default btn-sm'
+    href  = ''
+    title = "Run"
+>
+    <span class="glyphicon glyphicon-play-circle"></span>
+    Run
+</a>
+<a
+    class = 'btn btn-default btn-sm'
+    href  = '{{ object.get_absolute_url }}'
+>
+    Details
+</a>
+<a
+    class = 'btn btn-default btn-sm'
+    href  = '{{ object.get_update_url }}'
+    title = "Update"
+>
+    <span class="glyphicon glyphicon-pencil"></span>
+</a>
+<a
+    class = 'btn btn-default btn-sm'
+    href  = '{{ object.get_delete_url }}'
+    title = "Delete"
+>
+    <span class="glyphicon glyphicon-trash"></span>
+</a>
+</div>
+{% endblock %}
