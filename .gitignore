@@ -54,3 +54,6 @@ docs/_build/
 
 # Django DB
 db.sqlite3
+
+# Staticfiles
+staticfiles

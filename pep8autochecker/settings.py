@@ -59,12 +59,22 @@ WSGI_APPLICATION = 'pep8autochecker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -84,6 +94,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
