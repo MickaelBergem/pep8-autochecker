@@ -119,3 +119,8 @@ TEMPLATE_DIRS = (
         'templates',
     ),
 )
+
+try:
+    from local_settings import *
+except ImportError:
+    pass # No local settings
