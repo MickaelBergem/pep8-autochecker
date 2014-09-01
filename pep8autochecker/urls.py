@@ -10,5 +10,5 @@ urlpatterns = patterns('',
                            name='home'),
                        url(r'', include('pep8runs.urls')),
                        url(r'', include('projects.urls')),
-                       #url(r'^admin/', include(admin.site.urls)),
+                       url(r'^admin/', include(admin.site.urls)),
                        )
