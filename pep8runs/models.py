@@ -1,6 +1,6 @@
 from django.db import models
 from bsct.models import BSCTModelMixin
-from datetime import datetime
+from django.utils import timezone
 
 from projects.models import Project
 
@@ -15,7 +15,7 @@ class Run(BSCTModelMixin, models.Model):
     ]
 
     project = models.ForeignKey(Project, verbose_name='Project')
-    time_start = models.DateTimeField(default=datetime.now(),
+    time_start = models.DateTimeField(default=timezone.now(),
                                       verbose_name='Date of run start')
     finished = models.BooleanField(verbose_name='Run finished')
     duration = models.DecimalField(default=0,
