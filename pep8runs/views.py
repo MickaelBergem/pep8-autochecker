@@ -1,6 +1,10 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import redirect
 from pep8runs.engine import PEP8Runner
 from projects.models import Project
+from django.core.urlresolvers import reverse
+from django.views.generic import DetailView
+
+from models import Run
 
 
 def manual_run(request, project_id):
@@ -11,4 +15,9 @@ def manual_run(request, project_id):
 
     run = engine.run_and_save(project)
 
-    return render_to_response('projects/manual_run.html', {'run': run})
+    return redirect(run)
+
+
+class RunDetailView(DetailView):
+    model = Run
+    template_name = "runs/run_detail.html"

@@ -1,0 +1,53 @@
+{% extends 'bsct/plain/detail.html' %}
+{% load bscttags %}
+{% load static %}
+
+{% block more-css %}
+    {{ block.super }}
+    <link href="{% static 'css/runs.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block BSCT_TITLE %}
+<div class="run-header">
+ <h2>Run #{{ object.id }}</h2>
+ <h3>{{ object.project }}</h3>
+</div>
+
+{% endblock %}
+
+
+{% block BSCT_DETAIL_FIELDS %}
+<div class="row">
+<div class="col-md-6 run-details">
+<table class='table table-condensed'>
+    <tr>
+        <th>Date</th>
+        <td>{{ object.time_start }}</td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td>
+            {% if object.finished %}
+                {{ object.status }}
+                ({{ object.duration }} s)
+            {% else %}
+                Elapsed : {{ object.duration }} s
+                (still running)
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <th>Errors</th>
+        <td>
+            {{ object.total_errors }}
+        </td>
+    </tr>
+</table>
+</div>
+<div class="col-md-6 run-raw-output">
+<pre>
+{{ object.raw_output }}
+</pre>
+</div>
+</div>
+{% endblock %}
