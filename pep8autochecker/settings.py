@@ -120,7 +120,22 @@ TEMPLATE_DIRS = (
     ),
 )
 
+# Path to tmp dir where we will clone the repositories
+PATH_CLONE_PROJECTS = '/tmp/clones/'
+
+# Logging configuration
+LOG_FILE = 'django-pep8checker.log'
+
 try:
     from local_settings import *
 except ImportError:
-    pass # No local settings
+    pass  # No local settings
+
+import logging
+logging.basicConfig(filename=LOG_FILE,
+                    level=logging.INFO,
+                    format='%(asctime)s %(levelname)s : %(message)s',
+                    datefmt='%d/%m/%y %H:%M:%S',
+                    )
+django_log = logging.getLogger("django")
+django_log.setLevel(logging.WARNING)
