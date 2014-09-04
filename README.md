@@ -14,3 +14,5 @@ Run the following commands :
 # Status
 
 [ ![Codeship Status for MickaelBergem/pep8-autochecker](https://www.codeship.io/projects/14046180-0bae-0132-97d8-062262e0aab7/status)](https://www.codeship.io/projects/32046)
+[![Coverage Status](https://coveralls.io/repos/MickaelBergem/pep8-autochecker/badge.png?branch=HEAD)](https://coveralls.io/r/MickaelBergem/pep8-autochecker?branch=HEAD)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/MickaelBergem/pep8-autochecker/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/MickaelBergem/pep8-autochecker/?branch=master)
