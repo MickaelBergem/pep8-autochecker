@@ -3,6 +3,9 @@
 branch = True
 omit =
     .virtualenv/*
+    tests/*
+    pep8autochecker/wsgi.py
+    admin.py
 
 [report]
 # Regexes for lines to exclude from consideration
