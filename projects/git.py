@@ -2,7 +2,6 @@
 
 import subprocess
 import os
-import glob
 import logging
 from pep8autochecker import settings
 
@@ -49,9 +48,3 @@ class GitProject:
     def get_clone_dir(self):
         return os.path.join(settings.PATH_CLONE_PROJECTS,
                             'git-%d' % self.project.id)
-
-    def find_files(self, extension='py'):
-        os.chdir(self.get_clone_dir())
-        list_files = glob.glob("*.%s" % extension)
-
-        return [os.path.join(self.get_clone_dir(), filename) for filename in list_files]
