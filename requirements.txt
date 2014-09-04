@@ -13,3 +13,5 @@ six==1.7.3
 sqlparse==0.1.11
 static3==0.5.1
 wsgiref==0.1.2
+coverage==3.7.1
+python-coveralls
