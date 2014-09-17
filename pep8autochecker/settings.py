@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = (
+DEFAULT_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,8 +39,13 @@ INSTALLED_APPS = (
     'projects',
     'pep8runs',
     'bsct',
+)
+
+THIRD_PARTY_APPS = (
     'bootstrapform',
 )
+
+LOCAL_APPS = ()
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,15 +66,9 @@ WSGI_APPLICATION = 'pep8autochecker.wsgi.application'
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default':  dj_database_url.config()
 }
-
-DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -130,6 +129,9 @@ try:
     from local_settings import *
 except ImportError:
     pass  # No local settings
+
+# Applications to load
+INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 import logging
 logging.basicConfig(filename=LOG_FILE,

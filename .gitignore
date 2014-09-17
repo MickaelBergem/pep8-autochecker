@@ -57,3 +57,6 @@ db.sqlite3
 
 # Staticfiles
 staticfiles
+
+# Local configuration file
+local_settings.py
