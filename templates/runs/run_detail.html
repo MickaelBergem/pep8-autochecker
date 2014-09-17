@@ -42,6 +42,14 @@
             {{ object.total_errors }}
         </td>
     </tr>
+    <tr>
+        <th>File tested</th>
+        <td>{{ object.counters_json.files }}</td>
+    </tr>
+    <tr>
+        <th>Directories tested</th>
+        <td>{{ object.counters_json.directories }}</td>
+    </tr>
 </table>
 </div>
 <div class="col-md-6 run-raw-output">
