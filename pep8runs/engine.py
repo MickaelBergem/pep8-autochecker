@@ -31,7 +31,7 @@ class PEP8Runner:
         run.status = 'ok'
         run.finished = True
         run.duration = result.elapsed
-        run.raw_output = result.messages
+        # run.raw_output = result.messages
         run.total_errors = result.total_errors
         run.counters = result.counters
 
