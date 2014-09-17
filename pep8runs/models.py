@@ -17,7 +17,8 @@ class Run(BSCTModelMixin, models.Model):
     project = models.ForeignKey(Project, verbose_name='Project')
     time_start = models.DateTimeField(default=timezone.now(),
                                       verbose_name='Date of run start')
-    finished = models.BooleanField(verbose_name='Run finished')
+    finished = models.BooleanField(verbose_name='Run finished',
+                                   default=False)
     duration = models.DecimalField(default=0,
                                    max_digits=8,
                                    decimal_places=2,
@@ -40,6 +41,11 @@ class Run(BSCTModelMixin, models.Model):
 
     def finished_detail(self):
         return "Finished" if self.finished else "Still running..."
+
+    def _get_counters_as_json(self):
+        import simplejson
+        return simplejson.loads(self.counters)
+    counters_json = property(_get_counters_as_json)
 
     class Meta:
         verbose_name = "PEP8 run"
