@@ -1,0 +1,8 @@
+{% extends 'bsct/plain/detail.html' %}
+
+{% load treeviewer %}
+
+{% block BSCT_DETAIL_ACTIONS_EXTRA %}
+<hr>
+{{ tree_as_dict | render_tree  }}
+{% endblock %}

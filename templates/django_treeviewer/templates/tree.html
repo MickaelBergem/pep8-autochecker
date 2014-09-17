@@ -1,0 +1,15 @@
+<div class="well">
+<ul>
+{% for node in tree %}
+    {% if node.node_type == 'folder' %}
+        <li>
+          <span class="glyphicon glyphicon-folder-open"></span> {{ node.name }} ({{ node.content | length }})
+        </li>
+    {% elif node.node_type == 'file' %}
+        <li>
+          <span class="glyphicon glyphicon-file"></span> {{ node.name }}
+        </li>
+    {% endif %}
+{% endfor %}
+</ul>
+</div>

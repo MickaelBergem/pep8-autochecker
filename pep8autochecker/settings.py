@@ -43,6 +43,7 @@ DEFAULT_APPS = (
 
 THIRD_PARTY_APPS = (
     'bootstrapform',
+    'django_treeviewer',
 )
 
 LOCAL_APPS = ()
