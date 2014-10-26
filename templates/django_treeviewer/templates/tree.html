@@ -1,7 +1,7 @@
 <div class="well">
 <ul>
 {% for node in tree %}
-    {% if node.node_type == 'folder' %}
+    {% if node.node_type == 'folder' and node.content %}
         <li>
           <span class="glyphicon glyphicon-folder-open"></span> {{ node.name }} ({{ node.content | length }})
         </li>

@@ -16,15 +16,21 @@ class TreeViewer:
         current_node = []
         for file_name in os.listdir(folder):
             file_path = os.path.join(folder, file_name)
-            if os.path.isdir(file_path):
+            if file_name[0:1] == '.':
+                # We don't want the hidden files / folders
+                continue
+            elif os.path.isdir(file_path):
+                # Render folders
                 node = self._render_folder(file_name, file_path)
             elif file_path[-3:] == '.py':
+                # Add the Python files
                 node = {
                     'name': file_name,
                     'path': file_path,
                     'node_type': 'file'
                 }
             else:
+                # We don't want the other files
                 continue
             current_node.append(node)
         return current_node
