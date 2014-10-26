@@ -44,18 +44,36 @@
     </tr>
     <tr>
         <th>File tested</th>
-        <td>{{ object.counters_json.files }}</td>
+        <td>{{ object.counters.files }}</td>
     </tr>
     <tr>
         <th>Directories tested</th>
-        <td>{{ object.counters_json.directories }}</td>
+        <td>{{ object.counters.directories }}</td>
     </tr>
 </table>
 </div>
-<div class="col-md-6 run-raw-output">
-<pre>
-{{ object.raw_output }}
-</pre>
+<div class="col-md-6 big-counter">
+<span class="gigante">{{ object.total_errors }}</span>
+<span class="gigante-label">problems</span>
+
 </div>
 </div>
+<table class="table">
+<thead>
+    <tr>
+        <th>Code</th>
+        <th>Message</th>
+        <th>Count</th>
+    </tr>
+</thead>
+<tbody>
+{% for counter in object.message_counters|dictsortreversed:"count" %}
+    <tr>
+        <td><span class="label pep8-message-{{ counter.message.type }}">{{ counter.message.code }}</span></td>
+        <td>{{ counter.message.message|capfirst }}</td>
+        <td>{{ counter.count }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
 {% endblock %}

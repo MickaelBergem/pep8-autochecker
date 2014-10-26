@@ -14,6 +14,27 @@ table.run-details{
 
 }
 
-.run-raw-output{
+.pep8-message-warning {
+    background-color: #D8A41D;
+}
 
+.pep8-message-error {
+    background-color: #C21C1C;
+}
+
+.big-counter {
+    text-align: center;
+}
+
+.gigante {
+    font-size: 7em;
+    line-height: 80%;
+    display: block;
+}
+
+.gigante-label {
+    font-size: 2em;
+    letter-spacing: 2px;
+    width: 100%;
+    display: block;
 }

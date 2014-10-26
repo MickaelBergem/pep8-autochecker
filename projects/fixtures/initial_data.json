@@ -1,1 +1,0 @@
-[{"pk": 1, "model": "projects.project", "fields": {"date_added": "2014-09-02", "name": "PEP8 Checker", "git_url_clone": "https://github.com/MickaelBergem/pep8-autochecker.git"}}]

@@ -8,7 +8,7 @@ class Project(BSCTModelMixin, models.Model):
 
     name = models.CharField(max_length=100, verbose_name='Project name')
     git_url_clone = models.URLField(verbose_name='URL to GIT repository')
-    date_added = models.DateField(verbose_name='Date of creation', default=datetime.now())
+    date_added = models.DateField(verbose_name='Date of creation', auto_now_add=True)
 
     def __unicode__(self):
         return 'Project "{}"'.format(self.name)

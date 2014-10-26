@@ -1,1 +1,0 @@
-[{"pk": 1, "model": "projects.project", "fields": {"date_added": "2014-08-21", "name": "UpTimeDelay", "git_url_clone": "https://github.com/MickaelBergem/UpTimeDelay.git"}}]
