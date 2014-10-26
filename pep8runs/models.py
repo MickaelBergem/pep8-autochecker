@@ -3,8 +3,6 @@ from bsct.models import BSCTModelMixin
 from django.utils import timezone
 from jsonfield import JSONField
 
-from projects.models import Project
-
 
 class Run(BSCTModelMixin, models.Model):
     """ A PEP8 run on a project """
@@ -15,7 +13,7 @@ class Run(BSCTModelMixin, models.Model):
         ('unknown', 'unknown'),
     ]
 
-    project = models.ForeignKey(Project, verbose_name='Project')
+    project = models.ForeignKey('projects.Project', verbose_name='Project')
     time_start = models.DateTimeField(auto_now_add=True,
                                       verbose_name='Date of run start')
     finished = models.BooleanField(verbose_name='Run finished',
@@ -32,7 +30,7 @@ class Run(BSCTModelMixin, models.Model):
     counters = JSONField(verbose_name='Counters')
     total_errors = models.IntegerField(verbose_name='Total errors')
 
-    bsct_list_fields = [project, time_start, finished, duration]
+    bsct_list_fields = [project, time_start, total_errors]
 
     def __unicode__(self):
         return "Run for {} at {}".format(self.project.name, self.time_start)

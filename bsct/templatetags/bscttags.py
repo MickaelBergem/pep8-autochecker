@@ -84,7 +84,13 @@ def get_verbose_field_name(field):
     """
     Returns verbose_name for a field.
     """
-    return field.verbose_name.capitalize()
+    if hasattr(field, 'verbose_name'):
+        return field.verbose_name.capitalize()
+    elif(isinstance(field, property)):
+        # We try to reach the "short_description" attribute
+        return field.fget.short_description
+    else:
+        return field.name.capitalize()
 
 
 @register.simple_tag
@@ -93,7 +99,11 @@ def get_value_field(instance, field):
     Returns the value of a field for an instance.
     """
 
-    v = field.value_from_object(instance)
+    if isinstance(field, property):
+        # Special case of a property
+        v = field.fget(instance)
+    else:
+        v = field.value_from_object(instance)
 
     # Cas particuliers pour l'affichage
     if isinstance(field, django.db.models.fields.BooleanField):

@@ -6,10 +6,17 @@
 <a
     class = 'btn btn-default btn-sm'
     href  = '{% url 'manual_run' object.id %}'
-    title = "Run"
+    title = "New run"
 >
     <span class="glyphicon glyphicon-play-circle"></span>
     Run
+</a>
+<a
+    class = 'btn btn-default btn-sm'
+    href  = '{% url 'project_runs_list' object.id %}'
+    title = "Past runs"
+>
+    Past runs
 </a>
 <a
     class = 'btn btn-default btn-sm'

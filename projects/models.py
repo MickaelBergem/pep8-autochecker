@@ -2,6 +2,8 @@ from django.db import models
 from bsct.models import BSCTModelMixin
 from datetime import datetime
 
+from pep8runs.models import Run
+
 
 class Project(BSCTModelMixin, models.Model):
     """ A project """
@@ -12,6 +14,14 @@ class Project(BSCTModelMixin, models.Model):
 
     def __unicode__(self):
         return 'Project "{}"'.format(self.name)
+
+    def _get_last_problems_count(self):
+        last_run = Run.objects.filter(project=self).order_by('-time_start').first()
+        return last_run.total_errors if last_run else ''
+    last_problems_count = property(_get_last_problems_count)
+    _get_last_problems_count.short_description = 'Last problems count'
+
+    bsct_list_fields = [name, last_problems_count]
 
     class Meta:
         verbose_name = 'Project'
