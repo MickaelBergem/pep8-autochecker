@@ -16,7 +16,7 @@ class Project(BSCTModelMixin, models.Model):
         return 'Project "{}"'.format(self.name)
 
     def _get_last_problems_count(self):
-        last_run = Run.objects.filter(project=self).order_by('-time_start').first()
+        last_run = Run.objects.filter(project=self, status='ok').order_by('-time_start').first()
         return last_run.total_errors if last_run else ''
     last_problems_count = property(_get_last_problems_count)
     _get_last_problems_count.short_description = 'Last problems count'

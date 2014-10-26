@@ -1,0 +1,7 @@
+{% extends 'bsct/plain/detail.html' %}
+
+{% load bscttags %}
+
+{% block BSCT_DETAIL_ACTIONS_EXTRA %}
+{% include 'projects/graph.html' with plot=view.get_plot %}
+{% endblock %}
