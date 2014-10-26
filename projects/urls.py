@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
-from views import RunsList
+from views import RunsList, ProjectDetail
 
 from bsct.urls import URLGenerator
 
@@ -12,6 +12,9 @@ urlpatterns = patterns('',
                        url('^project/$',
                            ListView.as_view(model=Project, template_name="projects/project_list.html"),
                            name='project_list'),
+                       url('^project/(?P<pk>\d+)$',
+                           ProjectDetail.as_view(),
+                           name='project_detail'),
                        url('^project/(?P<pk>\d+)/runs$',
                            RunsList.as_view(),
                            name='project_runs_list'),

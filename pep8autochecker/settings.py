@@ -43,6 +43,7 @@ DEFAULT_APPS = (
 
 THIRD_PARTY_APPS = (
     'bootstrapform',
+    'jqplot',
 )
 
 LOCAL_APPS = ()
