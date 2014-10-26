@@ -3,7 +3,7 @@
 import pep8
 import logging
 import simplejson
-from pep8runs.models import Run
+from pep8runs.models import Run, PEP8Message
 from projects.git import GitProject
 
 
@@ -34,7 +34,14 @@ class PEP8Runner:
         run.duration = result.elapsed
         # run.raw_output = result.messages
         run.total_errors = result.total_errors
-        run.counters = simplejson.dumps(result.counters)
+        run.counters = result.counters
+
+        # Adding messages if they have never been seen before
+        for message_code in result.messages:
+            PEP8Message.objects.update_or_create(
+                code=message_code,
+                message=result.messages[message_code]
+            )
 
         logging.info("Run for project #%d finished after %ds with %d error(s)."
                      % (project.id, run.duration, run.total_errors))
