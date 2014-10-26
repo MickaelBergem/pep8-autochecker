@@ -6,10 +6,12 @@ from pep8runs.models import Run
 
 
 class EngineTests(TestCase):
-    fixtures = ['test.json']
 
     def setUp(self):
-        self.project1 = Project.objects.first()
+        self.project1 = Project.objects.create(
+            name="UpTimeDelay",
+            git_url_clone="https://github.com/MickaelBergem/UpTimeDelay.git"
+        )
 
     def test_can_run(self):
         """ Can it run ? """
