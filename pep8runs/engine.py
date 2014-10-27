@@ -38,9 +38,9 @@ class PEP8Runner:
 
         # Adding messages if they have never been seen before
         for message_code in result.messages:
-            PEP8Message.objects.update_or_create(
+            PEP8Message.objects.get_or_create(
+                {'message': result.messages[message_code]},
                 code=message_code,
-                message=result.messages[message_code]
             )
 
         logging.info("Run for project #%d finished after %ds with %d error(s)."
