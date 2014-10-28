@@ -21,5 +21,3 @@ def manual_run(request, project_id):
 class RunDetailView(DetailView):
     model = Run
     template_name = "runs/run_detail.html"
-
-

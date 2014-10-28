@@ -10,5 +10,6 @@ urlpatterns = patterns('',
                            name='home'),
                        url(r'', include('pep8runs.urls')),
                        url(r'', include('projects.urls')),
+                       url(r'githubhook', include('github_hook_signal.urls')),
                        url(r'^admin/', include(admin.site.urls)),
                        )
