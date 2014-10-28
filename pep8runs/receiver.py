@@ -12,7 +12,7 @@ def trigger_run(sender, **kwargs):
                   % kwargs['repository'])
 
     try:
-        project = Project.objects.get(git_url_clone=kwargs['repository']['url'])
+        project = Project.objects.get(git_url_clone=kwargs['repository']['clone_url'])
     except Project.DoesNotExist:
         return {'status': 'failed', 'message': "No such repository !"}
 

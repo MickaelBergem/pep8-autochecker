@@ -9,27 +9,22 @@ from signals import github_hook_received
 @csrf_exempt
 def github_hook(request):
     if request.method == 'POST':
-        if 'payload' in request.POST:
-            # Decode the payload
-            payload = json.loads(request.POST['payload'])
+        # Decode the payload
+        payload = json.loads(request.body)
 
-            # Send the signal
-            receivers = github_hook_received.send(
-                sender='githubhookreceiver',
-                repository=payload['repository'],
-                payload=payload,
-            )
+        # Send the signal
+        receivers = github_hook_received.send(
+            sender='githubhookreceiver',
+            repository=payload['repository'],
+            payload=payload,
+        )
 
-            if not receivers:
-                response = {'status': 'success', 'message': 'Ok'}
+        if not receivers:
+            response = {'status': 'success', 'message': 'Ok'}
 
-            for receiver in receivers:
-                # TODO
-                (receiver, response) = receiver
-
-        else:
-            # Payload not found
-            response = {'status': 'error', 'message': 'No payload'}
+        for receiver in receivers:
+            # TODO
+            (receiver, response) = receiver
 
         return JsonResponse(response)
     else:
