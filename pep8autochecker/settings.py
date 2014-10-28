@@ -44,6 +44,7 @@ DEFAULT_APPS = (
 THIRD_PARTY_APPS = (
     'bootstrapform',
     'jqplot',
+    'github_hook_signal',
 )
 
 LOCAL_APPS = ()
