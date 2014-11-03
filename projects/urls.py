@@ -8,7 +8,8 @@ from bsct.urls import URLGenerator
 from models import Project
 bsct_patterns_project = URLGenerator(Project).get_urlpatterns(paginate_by=10)
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url('^project/$',
         ListView.as_view(model=Project, template_name="projects/project_list.html"),
         name='project_list'),

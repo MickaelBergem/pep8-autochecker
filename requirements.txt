@@ -17,3 +17,4 @@ coverage==3.7.1
 python-coveralls
 simplejson==3.6
 jsonfield==1
+django-allauth

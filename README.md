@@ -11,6 +11,8 @@ Run the following commands :
     source bin/env/activate
     pip install -r requirements
 
+To enable social accounts authentification, you should open the admin page (http://localhost:8000/admin/socialaccount/socialapp/) and add a social application (for example GitHub). You will need details (public and API keys) from the selected platform.
+
 # Status
 
 [ ![Codeship Status for MickaelBergem/pep8-autochecker](https://www.codeship.io/projects/14046180-0bae-0132-97d8-062262e0aab7/status)](https://www.codeship.io/projects/32046)
