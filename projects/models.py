@@ -1,8 +1,27 @@
 from django.db import models
 from bsct.models import BSCTModelMixin
 from datetime import datetime
-
+from jsonfield import JSONField
+from django.contrib.auth.models import User
 from pep8runs.models import Run
+
+
+class Repository(BSCTModelMixin, models.Model):
+    """ A GIT repository """
+
+    github_object = JSONField('GitHub repository object')
+    name = models.CharField(max_length=100, verbose_name='Project name')
+    id = models.IntegerField('Repository ID', primary_key=True)
+    owner = models.ForeignKey(User)
+
+    def __unicode__(self):
+        return 'Repository "{}"'.format(self.name)
+
+    bsct_list_fields = [name, owner]
+
+    class Meta:
+        verbose_name = 'Repository'
+        verbose_name_plural = 'Repositories'
 
 
 class Project(BSCTModelMixin, models.Model):
@@ -10,6 +29,7 @@ class Project(BSCTModelMixin, models.Model):
 
     name = models.CharField(max_length=100, verbose_name='Project name')
     git_url_clone = models.URLField(verbose_name='URL to GIT repository')
+    repository = models.ForeignKey(Repository, verbose_name='Project GIT repository', null=True, default=None)
     date_added = models.DateField(verbose_name='Date of creation', auto_now_add=True)
 
     def __unicode__(self):

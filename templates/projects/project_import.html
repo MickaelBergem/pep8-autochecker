@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table">
+<thead>
+<tr>
+<th>Repository</th>
+<th>Creation date</th>
+<th><span class="glyphicon glyphicon-star"></span></th>
+<th></th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="4" class="text-center">Select the repository you want to import</td>
+</tr>
+</tfoot>
+<tbody>
+{% for repo in view.get_repo_list %}
+<tr>
+<td><a href="{{ repo.html_url }}">{{ repo.full_name }}</a></td>
+<td>{{ repo.created_at }}</td>
+<td>{{ repo.stargazers_count }}</td>
+<td>
+<a
+    class = 'btn btn-default'
+    href  = '{% url "project_import_add" repo.id %}'
+    title = "Import"
+>
+    <span class="glyphicon glyphicon-plus"></span>
+</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
