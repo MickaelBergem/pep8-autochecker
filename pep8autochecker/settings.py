@@ -36,6 +36,7 @@ DEFAULT_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required by AllAuth
     'projects',
     'pep8runs',
     'bsct',
@@ -45,6 +46,11 @@ THIRD_PARTY_APPS = (
     'bootstrapform',
     'jqplot',
     'github_hook_signal',
+    # AllAuth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
 )
 
 LOCAL_APPS = ()
@@ -57,6 +63,29 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    # Required by allauth template tags
+    "django.core.context_processors.request",
+    "django.contrib.messages.context_processors.messages",
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
 
 ROOT_URLCONF = 'pep8autochecker.urls'
 
@@ -91,6 +120,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
@@ -126,6 +156,9 @@ PATH_CLONE_PROJECTS = '/tmp/clones/'
 
 # Logging configuration
 LOG_FILE = 'django-pep8checker.log'
+
+# Page to which redirect users after a successful login
+LOGIN_REDIRECT_URL = '/project/'
 
 try:
     from local_settings import *

@@ -40,3 +40,28 @@
 </a>
 </div>
 {% endblock %}
+
+{% block BSCT_LIST_CREATE_LINK %}
+<div class="btn-group pull-right">
+{% if object_list.model.get_create_url %}
+    <a
+        class = 'btn btn-default'
+        href  = '{{object_list.model.get_create_url }}'
+        title = 'Create a new project from a clone URL'
+    >
+        <span class="glyphicon glyphicon-plus"></span>
+        New
+    </a>
+{% endif %}
+{% if user.id %}
+    <a
+        class = 'btn btn-default'
+        href  = '{% url "project_import" %}'
+        title = 'Import a project from GitHub'
+    >
+        <span class="glyphicon glyphicon-download-alt"></span>
+        Import
+    </a>
+{% endif %}
+</div>
+{% endblock %}

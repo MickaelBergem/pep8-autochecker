@@ -1,9 +1,16 @@
+{% load socialaccount %}
+
       <div class="header">
         <ul class="nav nav-pills pull-right">
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'project_list' %}">Projects</a></li>
           <li class="disabled"><a href="#">About</a></li>
           <li class="disabled"><a href="#">Contact</a></li>
+          {% if user.id %}
+            <li><a href="{% url 'project_list' %}">{{ user }}</a></li>
+          {% else %}
+            <li><a href="{% provider_login_url "github" %}">Connect with GitHub</a></li>
+          {% endif %}
         </ul>
         <h3 class="text-muted"><a href="{% url 'home' %}">PEP8 Tracker</a></h3>
       </div>
