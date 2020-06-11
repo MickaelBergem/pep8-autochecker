@@ -15,8 +15,20 @@ To enable social accounts authentification, you should open the admin page (http
 
 # Screenshots
 
+**Landing page**:
+
 ![landing page](./screenshots/landing.png)
+
+---
+
+**Example of scan results**:
+
 ![scan results](./screenshots/scan-results.png)
+
+**Details of a project**:
+
+---
+
 ![project details](./screenshots/project-details.png)
 
 # Status
