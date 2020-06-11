@@ -13,6 +13,12 @@ Run the following commands :
 
 To enable social accounts authentification, you should open the admin page (http://localhost:8000/admin/socialaccount/socialapp/) and add a social application (for example GitHub). You will need details (public and API keys) from the selected platform.
 
+# Screenshots
+
+![landing page](./screenshots/landing.png)
+![scan results](./screenshots/scan-results.png)
+![project details](./screenshots/project-details.png)
+
 # Status
 
 [ ![Codeship Status for MickaelBergem/pep8-autochecker](https://www.codeship.io/projects/14046180-0bae-0132-97d8-062262e0aab7/status)](https://www.codeship.io/projects/32046)
